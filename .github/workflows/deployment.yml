@@ -10,13 +10,13 @@ on:
 jobs:
   docker:
     runs-on: ubuntu-latest
-    if: github.repository != 'sci-oer/base-resource-template'
+    if: github.repository != 'sci-oer/custom-resource-template'
     outputs:
       container_digest: ${{ steps.docker_build.outputs.digest }}
     steps:
       - name: Setup the current date
         id: prep
-        run: echo "::set-output name=date::$(date -u +'%Y-%m-%dT%H:%M:%SZ')"
+        run: echo "date=$(date -u +'%Y-%m-%dT%H:%M:%SZ')" >> $GITHUB_OUTPUT
       - name: Docker meta
         id: meta
         uses: docker/metadata-action@v4
